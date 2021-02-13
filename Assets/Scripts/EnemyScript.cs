@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyScript : MonoBehaviour
     public float minDistance = 0;
     public float timerTotal = 2;
     public GameController parent;
+    public Slider healthBar;
 
     public float Health { get; private set; }
     private bool isExploding = false;
@@ -61,6 +63,8 @@ private void Awake()
     {
         Health += Quantity;
 
+        healthBar.value = Health;
+
         if (Health < 0)
         {
             Death();
@@ -104,6 +108,8 @@ private void Awake()
 
     public void UpdatePos(Vector3 position)
     {
+        healthBar.value = Health;
+
         navMeshAgent.enabled = true;
         transform.position = position;
         onChase = true;
