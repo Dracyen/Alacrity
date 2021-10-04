@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public bool debug = false;
+
     public float Health { get; private set; }
 
     private float healthMin = 0;
@@ -29,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void affectHealth(float Quantity)
     {
+        if(!debug)
         Health += Quantity;
 
         UpdateHealth();
@@ -67,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
 
     void UpdateHealth()
     {
-        healthBar.value = Health / 100;
+        healthBar.value = Health;
     }
 
     void Death()
